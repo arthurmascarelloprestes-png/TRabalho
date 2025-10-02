@@ -223,12 +223,15 @@ body {
 
 /* Imagens */
 .content-image {
+    max-width: 600px;  /* limite opcional */
     width: 100%;
     height: auto;
     border-radius: 0.5rem;
-    margin: 2rem 0;
+    margin: 2rem auto;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: block;
 }
+
 
 /* Overlay Mobile */
 .overlay {
@@ -244,18 +247,15 @@ body {
 
 .overlay.active {
     display: block;
-
 }
 
-.page-content {
-    text-align: center;
-}
-
-/* Centralizar texto dentro dos cards */
-.card {
-    background-color: var(--secondary);
+.main-content {
+    flex: 1;
     padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center; /* adicionado */
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+
+    display: flex;
+    justify-content: center; /* centraliza horizontal */
+    align-items: center;     /* centraliza vertical */
 }
