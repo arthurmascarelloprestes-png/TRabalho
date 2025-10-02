@@ -1,0 +1,247 @@
+/* Variáveis de Cores */
+:root {
+    --primary: #3B82F6; /* Azul principal */
+    --primary-fg: #FFFFFF; /* Branco para texto em azul */
+    --secondary: #F3F4F6; /* Cinza claro */
+    --accent: #E5E7EB; /* Cinza mais claro */
+    --muted: #F9FAFB; /* Fundo suave */
+    --foreground: #1F2937; /* Texto escuro */
+    --background: #FFFFFF; /* Fundo branco */
+}
+
+/* Reset e Corpo Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.6;
+}
+
+/* Container Principal */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 256px;
+    background-color: var(--muted);
+    height: 100vh;
+    position: fixed;
+    left: -256px;
+    top: 0;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    padding: 1.5rem;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-btn {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: none;
+    border: none;
+    text-align: left;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--foreground);
+    transition: background-color 0.2s;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background-color: var(--primary);
+    color: var(--primary-fg);
+}
+
+/* Botão Mobile */
+.mobile-menu-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background-color: var(--primary);
+    color: var(--primary-fg);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    .sidebar {
+        position: relative;
+        left: 0;
+    }
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex: 1;
+    padding: 1.5rem;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .main-content {
+        padding: 2rem;
+        margin-left: 256px;
+    }
+}
+
+.content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.page-content h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.page-content p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Cards e Grid */
+.grid-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+    .grid-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-cards.small {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    background-color: var(--secondary);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card.accent {
+    background-color: var(--accent);
+}
+
+.card.muted {
+    background-color: var(--muted);
+    grid-column: 1 / -1; /* Ocupa toda a largura em grid */
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Timeline */
+.timeline {
+    margin: 2rem 0;
+}
+
+.timeline-item {
+    border-left: 4px solid var(--primary);
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.timeline-item.secondary {
+    border-left-color: var(--secondary);
+}
+
+.timeline-item.accent {
+    border-left-color: var(--accent);
+}
+
+.timeline-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Imagens */
+.content-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Overlay Mobile */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
