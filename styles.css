@@ -244,4 +244,18 @@ body {
 
 .overlay.active {
     display: block;
+
+}
+
+.page-content {
+    text-align: center;
+}
+
+/* Centralizar texto dentro dos cards */
+.card {
+    background-color: var(--secondary);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center; /* adicionado */
 }
