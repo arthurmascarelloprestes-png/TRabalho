@@ -1,15 +1,27 @@
-/* Variáveis de Cores */
+/* --- Variáveis globais de cor --- */
 :root {
-    --primary: #3B82F6; /* Azul principal */
-    --primary-fg: #FFFFFF; /* Branco para texto em azul */
-    --secondary: #F3F4F6; /* Cinza claro */
-    --accent: #E5E7EB; /* Cinza mais claro */
-    --muted: #F9FAFB; /* Fundo suave */
-    --foreground: #1F2937; /* Texto escuro */
-    --background: #FFFFFF; /* Fundo branco */
+    --background: #FFFFFF;
+    --foreground: #000000;
+    --secondary: #F3F4F6;
+    --accent: #E0E7FF;
+    --muted: #F9FAFB;
+    --primary: #3B82F6;
+    --primary-fg: #FFFFFF;
+    --transition-time: 0.3s;
 }
 
-/* Reset e Corpo Geral */
+/* --- Dark Mode --- */
+body.dark-mode {
+    --background: #1F2937;
+    --foreground: #F9FAFB;
+    --secondary: #374151;
+    --accent: #4F46E5;
+    --muted: #111827;
+    --primary: #2563EB;
+    --primary-fg: #FFFFFF;
+}
+
+/* --- Reset básico --- */
 * {
     margin: 0;
     padding: 0;
@@ -17,114 +29,107 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--background);
     color: var(--foreground);
-    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    transition: background-color var(--transition-time), color var(--transition-time);
 }
 
-/* Container Principal */
+h1, h2, h3 {
+    margin-bottom: 0.5rem;
+}
+
+p {
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+/* --- Container e Layout --- */
 .container {
     display: flex;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* Sidebar */
+/* --- Sidebar --- */
 .sidebar {
-    width: 256px;
-    background-color: var(--muted);
-    height: 100vh;
-    position: fixed;
-    left: -256px;
-    top: 0;
-    z-index: 1000;
-    transition: left 0.3s ease;
-    padding: 1.5rem;
+    width: 220px;
+    background-color: var(--secondary);
+    border-right: 1px solid #ccc;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    z-index: 9999;
 }
 
-.sidebar.active {
-    left: 0;
-}
-
-.sidebar-header h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary);
-    margin-bottom: 2rem;
+.sidebar-header {
+    margin-bottom: 1.5rem;
     text-align: center;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 
 .nav-list {
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .nav-btn {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 0.5rem;
     background: none;
     border: none;
-    text-align: left;
-    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
     cursor: pointer;
     font-size: 1rem;
+    text-align: left;
+    border-radius: 6px;
+    transition: background-color var(--transition-time);
     color: var(--foreground);
-    transition: background-color 0.2s;
 }
 
-.nav-btn:hover,
+.nav-btn:hover {
+    background-color: var(--accent);
+}
+
 .nav-btn.active {
     background-color: var(--primary);
     color: var(--primary-fg);
+    font-weight: 700;
 }
 
-/* Botão Mobile */
+/* --- Mobile Menu --- */
 .mobile-menu-btn {
+    display: none;
     position: fixed;
     top: 1rem;
     left: 1rem;
-    z-index: 1001;
-    background-color: var(--primary);
-    color: var(--primary-fg);
+    background: var(--primary);
     border: none;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    color: var(--primary-fg);
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1.2rem;
-    display: block;
+    z-index: 10000;
 }
 
-@media (min-width: 768px) {
-    .mobile-menu-btn {
-        display: none;
-    }
-
-    .sidebar {
-        position: relative;
-        left: 0;
-    }
-}
-
-/* Conteúdo Principal */
+/* --- Main Content --- */
 .main-content {
     flex: 1;
-    padding: 1.5rem;
-    margin-left: 0;
-    transition: margin-left 0.3s ease;
-}
-
-@media (min-width: 768px) {
-    .main-content {
-        padding: 2rem;
-        margin-left: 256px;
-    }
+    padding: 2rem;
+    overflow-y: auto;
 }
 
 .content-wrapper {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
+/* --- Páginas --- */
 .page {
     display: none;
 }
@@ -133,49 +138,24 @@ body {
     display: block;
 }
 
-.page-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--primary);
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.page-content h2 {
-    font-size: 1.875rem;
-    font-weight: bold;
-    color: var(--primary);
-    margin-bottom: 1rem;
-}
-
-.page-content p {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-/* Cards e Grid */
+/* --- Cards e Grades --- */
 .grid-cards {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
     margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
-@media (min-width: 768px) {
-    .grid-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .grid-cards.small {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.grid-cards.small {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 .card {
     background-color: var(--secondary);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: background-color var(--transition-time), box-shadow var(--transition-time);
 }
 
 .card.accent {
@@ -184,78 +164,101 @@ body {
 
 .card.muted {
     background-color: var(--muted);
-    grid-column: 1 / -1; /* Ocupa toda a largura em grid */
 }
 
-.card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
+/* --- Imagens de conteúdo --- */
+.content-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    object-fit: cover;
 }
 
-/* Timeline */
+/* --- Timeline --- */
 .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin: 2rem 0;
 }
 
 .timeline-item {
-    border-left: 4px solid var(--primary);
-    padding-left: 1rem;
-    margin-bottom: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    background-color: var(--secondary);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .timeline-item.secondary {
-    border-left-color: var(--secondary);
+    background-color: var(--muted);
 }
 
 .timeline-item.accent {
-    border-left-color: var(--accent);
+    background-color: var(--accent);
 }
 
-.timeline-item h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary);
-}
-
-/* Imagens */
-.content-image {
-    max-width: 600px;  /* limite opcional */
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-    margin: 2rem auto;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    display: block;
-}
-
-
-/* Overlay Mobile */
-.overlay {
+/* --- Botão alternar tema minimalista cinza no topo direito --- */
+.theme-toggle-btn {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: none;
-}
-
-.overlay.active {
-    display: block;
-}
-
-.main-content {
-    flex: 1;
-    padding: 1.5rem;
-    margin-left: 0;
-    transition: margin-left 0.3s ease;
-
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: 40px;
+    height: 40px;
     display: flex;
-    justify-content: center; /* centraliza horizontal */
-    align-items: center;     /* centraliza vertical */
+    align-items: center;
+    justify-content: center;
+    color: #888888;
+    transition: color 0.3s ease;
+    z-index: 10000;
+    box-shadow: none;
+}
+
+.theme-toggle-btn:hover {
+    color: #555555;
+}
+
+.theme-toggle-btn svg.icon-brightness {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+/* --- Dark Mode adicionais para botão tema --- */
+body.dark-mode .theme-toggle-btn {
+    color: #bbbbbb;
+}
+
+body.dark-mode .theme-toggle-btn:hover {
+    color: #eeeeee;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background-color: var(--secondary);
+        transform: translateX(-100%);
+        box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+    }
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
 }
