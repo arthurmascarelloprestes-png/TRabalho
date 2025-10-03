@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>IA Explorer - Inteligência Artificial</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <div class="container">
+        <!-- Botão alternar tema -->
+        <button id="toggleThemeBtn" class="theme-toggle-btn" aria-label="Alternar tema">
+            <!-- Ícone minimalista brilho SVG cinza -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon-brightness" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="24" height="24">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
+
         <!-- Sidebar de Navegação -->
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-header">
@@ -23,7 +39,7 @@
         </nav>
 
         <!-- Botão Mobile para Abrir Sidebar -->
-        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">☰</button>
 
         <!-- Conteúdo Principal -->
         <main class="main-content">
@@ -34,7 +50,7 @@
                     <div class="page-content">
                         <h2>Bem-vindo ao Mundo da IA</h2>
                         <p>A Inteligência Artificial está transformando nosso mundo de maneiras profundas. Desde assistentes virtuais até carros autônomos, a IA está se tornando parte integrante do nosso cotidiano.</p>
-                        
+
                         <div class="grid-cards">
                             <div class="card">
                                 <h3>O Que é IA?</h3>
@@ -46,7 +62,7 @@
                             </div>
                         </div>
 
-                        <img src="https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=IA+Futurista" alt="Representação visual de inteligência artificial com redes neurais" class="content-image">
+                        <img src="https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=IA+Futurista" alt="Representação visual de inteligência artificial com redes neurais" class="content-image" />
                     </div>
                 </section>
 
@@ -73,7 +89,7 @@
                                 <p>Big Data, deep learning e GPUs possibilitam avanços espetaculares. Assistentes virtuais, carros autônomos e GPT transformam a paisagem tecnológica.</p>
                             </div>
                         </div>
-                        <img src="https://via.placeholder.com/600x300/3B82F6/FFFFFF?text=Linha+do+Tempo+IA" alt="Linha do tempo da IA" class="content-image">
+                        <img src="https://via.placeholder.com/600x300/3B82F6/FFFFFF?text=Linha+do+Tempo+IA" alt="Linha do tempo da IA" class="content-image" />
                     </div>
                 </section>
 
@@ -100,7 +116,7 @@
                                 <p>Usa redes neurais profundas com múltiplas camadas para aprender representações complexas de dados. Base para muitos avanços recentes.</p>
                             </div>
                         </div>
-                        <img src="https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=Rede+Neural" alt="Diagrama de rede neural" class="content-image">
+                        <img src="https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=Rede+Neural" alt="Diagrama de rede neural" class="content-image" />
                     </div>
                 </section>
 
@@ -139,7 +155,7 @@
                             <h3>Impacto na Sociedade</h3>
                             <p>A IA está transformando indústrias, criando novas oportunidades e levantando questões importantes sobre ética, privacidade e o futuro do trabalho. É crucial entender essas tecnologias para participar ativamente dessas discussões.</p>
                         </div>
-                        <img src="https://via.placeholder.com/600x300/3B82F6/FFFFFF?text=Cidade+Futurista" alt="Cidade com IA" class="content-image">
+                        <img src="https://via.placeholder.com/600x300/3B82F6/FFFFFF?text=Cidade+Futurista" alt="Cidade com IA" class="content-image" />
                     </div>
                 </section>
 
@@ -170,14 +186,11 @@
                             <h3>Preparando-se para o Futuro</h3>
                             <p>À medida que a IA continua a evoluir, é essencial que a sociedade se eduque sobre essas tecnologias, participe das discussões éticas e se prepare para os cambios transformadores que estão por vir.</p>
                         </div>
-                        <img src="https://via.placeholder.com/600x300/3B82F6/FFFFFF?text=Colaboração+Humano-IA" alt="Futuro da IA" class="content-image">
+                        <img src="https://via.placeholder.com/600x300/3B82F6/FFFFFF?text=Colaboração+Humano-IA" alt="Futuro da IA" class="content-image" />
                     </div>
                 </section>
             </div>
         </main>
-
-        <!-- Overlay para Mobile -->
-        <div class="overlay" id="overlay"></div>
     </div>
 
     <script src="script.js"></script>
