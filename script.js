@@ -8,30 +8,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Alternar tema claro/escuro
     toggleThemeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        toggleThemeBtn.textContent = isDark ? '🌞' : '🌙';
     });
 
-    // Alternar páginas da navegação
+    // Alternar páginas
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove ativo de todos os botões e adiciona ao clicado
+            // Remove active de todos botões
             navButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Mostrar a página correta
+            // Mostrar só a página selecionada
             const pageId = btn.dataset.page;
             pages.forEach(page => {
                 page.classList.toggle('active', page.id === pageId);
             });
 
-            // Fecha menu sidebar no mobile após clique
-            if (window.innerWidth <= 768) {
+            // Se estiver mobile, fechar menu ao clicar
+            if(window.innerWidth <= 768) {
                 sidebar.classList.remove('open');
             }
         });
     });
 
-    // Botão para abrir/fechar menu mobile
+    // Botão mobile abrir/fechar sidebar
     mobileMenuBtn.addEventListener('click', () => {
         sidebar.classList.toggle('open');
     });
+
+toggleThemeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    // Não altera o conteúdo do botão
+});
 });
