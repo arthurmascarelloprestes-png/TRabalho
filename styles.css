@@ -9,18 +9,22 @@
     --primary-fg: #FFFFFF;
     --icon-color: #888888;
     --transition-time: 0.3s;
+    --sidebar: #E3E3E3;
+    --sidebar-destaque:#3B82F6;
 }
 
 /* --- Tema escuro --- */
 body.dark-mode {
-    --background: #1F2937;
+    --background: #252525;
     --foreground: #F9FAFB;
     --secondary: #374151;
-    --accent: #4B5563;
-    --muted: #111827;
+    --accent: #2e2e2e;
+    --muted: #1f1f1f;
     --primary: #60A5FA;
     --primary-fg: #FFFFFF;
     --icon-color: #CCCCCC;
+    --sidebar: #121212;
+    --sidebar-destaque:#DEDEDE;
 }
 
 /* --- Reset básico --- */
@@ -97,7 +101,7 @@ body.dark-mode .theme-toggle-btn:hover {
 /* --- Sidebar --- */
 .sidebar {
     width: 220px;
-    background-color: var(--secondary);
+    background-color: var(--sidebar);
     padding: 1rem;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
     display: flex;
@@ -105,7 +109,7 @@ body.dark-mode .theme-toggle-btn:hover {
 }
 
 .sidebar-header h1 {
-    color: var(--primary);
+    color: var(--sidebar-destaque);
     margin-bottom: 1.5rem;
     font-weight: 700;
     text-align: center; /* Centralizado para melhor visual */
@@ -217,6 +221,7 @@ body.dark-mode .theme-toggle-btn:hover {
     margin: 2rem auto; /* Centraliza o grid inteiro */
     justify-content: center; /* Centraliza os itens no grid horizontalmente */
     justify-items: center; /* Centraliza cada card dentro da célula do grid */
+    align-items: stretch; /* Novos: Faz cards terem altura igual na linha para alinhamento vertical sincronizado */
     max-width: 100%; /* Usa toda a largura disponível do wrapper */
     width: 100%;
 }
@@ -237,7 +242,9 @@ body.dark-mode .theme-toggle-btn:hover {
     width: 100%; /* Força largura total da célula para centralização */
     display: flex;
     flex-direction: column;
+    justify-content: flex-start; /* Novos: Alinha conteúdo no topo para sincronia vertical */
     align-items: center; /* Centraliza conteúdo vertical e horizontal no card */
+    min-height: 140px; /* Novos: Altura mínima para uniformizar cards com textos de tamanhos variados */
 }
 
 .card:hover {
@@ -269,19 +276,22 @@ body.dark-mode .theme-toggle-btn:hover {
     font-size: 0.95rem;
     line-height: 1.4;
     text-align: center; /* Centralizado nos cards para consistência */
-    margin: 0 auto; /* Centraliza o parágrafo dentro do card */
-    max-width: 90%; /* Limita largura para centralização melhor */
+    margin: 0 auto 0 0; /* Ajustado: Remove margem inferior para flex distribuir */
+    width: 100%; /* Novos: Força largura total para centralização uniforme, independentemente do texto */
+    flex-grow: 1; /* Novos: Permite que o parágrafo cresça para preencher espaço disponível */
 }
 
 /* --- Imagens responsivas (centralizadas) --- */
 .content-image {
-    max-width: 100%;
+    max-width: 600px; /* Limita largura máxima para evitar imagens gigantes em desktop */
+    width: 100%; /* Permite adaptação em telas menores */
     height: auto;
     border-radius: 8px;
-    margin: 1.5rem auto; /* Centraliza e adiciona margem superior/inferior */
+    margin: 1rem auto; /* Centraliza e adiciona margem superior/inferior mais equilibrada */
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     display: block; /* Garante centralização */
 }
+
 
 /* --- Linha do tempo (centralizada no container) --- */
 .timeline {
@@ -357,16 +367,19 @@ body.dark-mode .theme-toggle-btn:hover {
         gap: 1rem;
         margin: 1rem auto;
         justify-items: center;
+        align-items: stretch; /* Mantém stretch em mobile para consistência */
     }
 
     .grid-cards.small {
         grid-template-columns: 1fr; /* Uma coluna para cards pequenos também */
         justify-items: center;
+        align-items: stretch;
     }
 
     .card {
         width: 90%; /* Em mobile, cards ocupam 90% da largura para centralização melhor */
         margin: 0 auto; /* Centraliza o card no container */
+        min-height: auto; /* Remove min-height em mobile para flexibilidade */
     }
 
     /* Textos em mobile: centralizados para melhor leitura */
@@ -377,6 +390,7 @@ body.dark-mode .theme-toggle-btn:hover {
     .page-content p,
     .card p {
         text-align: center; /* Centraliza parágrafos em mobile */
+        width: 100%;
     }
 
     .timeline {
@@ -397,17 +411,21 @@ body.dark-mode .theme-toggle-btn:hover {
     }
 }
 
-/* Adicional: Para tablets (768px - 1024px), reforça colunas nos grids */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* Adicional: Para tablets e desktop (768px+), reforça colunas nos grids */
+/* Ajuste específico para .small: força 3 colunas para layout 3x2 equilibrado */
+@media (min-width: 769px) {
     .grid-cards {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Garante 2-3 colunas em tablets */
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Garante 2-3 colunas em tablets/desktop */
     }
     
     .grid-cards.small {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* 3-4 colunas em tablets */
+        grid-template-columns: repeat(3, 1fr); /* Força exatamente 3 colunas para 3 em cima + 3 embaixo */
+        gap: 1rem;
+        max-width: 800px; /* Limita largura para centralização perfeita */
+        margin: 2rem auto;
     }
 
     .content-wrapper {
-        max-width: 900px; /* Limita em tablets para evitar esticamento */
+        max-width: 1000px; /* Limita em tablets/desktop para evitar esticamento */
     }
 }
